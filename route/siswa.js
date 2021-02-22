@@ -102,11 +102,11 @@ app.post("/update", (req,res) => {
     })
 })
 
-// DELETE: /pelanggaran/:id_pelanggaran --> end point untuk hapus data pelanggaran
+// DELETE: /pegawai/:id_pegawai --> end point untuk hapus data pegawai
 app.delete("/:id_siswa", (req,res) => {
     let data = {
-        id_pelanggaran : req.params.id_siswa
-    } 
+        id_siswa : req.params.id_siswa
+    }
     let message = ""
     let sql = "delete from siswa where ?"
     db.query(sql, data, (err,result) => {
