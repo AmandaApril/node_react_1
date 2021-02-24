@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 // GET: /pelanggaran --> end point untuk mengakses data pelanggaran
 app.get("/", (req,res) => {
-    let sql = "select * from siswa"
+    let sql = "SELECT s.id_siswa, s.nis, s.nama_siswa, s.kelas, s.jurusan, s.poin, " +
+    "j.nama_jurusan, j.kepanjangan " +
+    "FROM siswa s JOIN jurusan j ON s.jurusan = j.id_jurusan"
     db.query(sql, (err, result) => {
         if (err) {
             throw err
@@ -25,6 +27,24 @@ app.get("/", (req,res) => {
             res.send(JSON.stringify(response))
         }
     })    
+})
+
+app.get("/jurusan", (req,res) => {
+    let sql = "SELECT * from jurusan"
+    db.query(sql, (err, result) => {
+        if (err) {
+            throw err
+        }
+        else{
+            let response = {
+                count: result.length,
+                jurusan: result
+            }
+        
+            res.setHeader("Content-Type","application/json")
+            res.send(JSON.stringify(response))
+        }
+    })
 })
 
 // POST: /pelanggaran --> end point untuk pencarian data pelanggaran
