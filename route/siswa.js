@@ -50,7 +50,7 @@ app.get("/jurusan", (req,res) => {
 // POST: /pelanggaran --> end point untuk pencarian data pelanggaran
 app.post("/", (req,res) => {
     let find = req.body.find
-    let sql = "select * from siswa where id_siswa like '%"+find+"%' or nis like '%"+find+"%' or nama_siswa like '%"+find+"%' or kelas like '%"+find+"%' or jurusan like '%"+find+"%' or poin like '%"+find+"%'"
+    let sql = "select * FROM siswa s JOIN jurusan j ON s.jurusan = j.id_jurusan  where id_siswa like '%"+find+"%' or nis like '%"+find+"%' or nama_siswa like '%"+find+"%' or kelas like '%"+find+"%' or jurusan like '%"+find+"%' or poin like '%"+find+"%'"
     db.query(sql, (err, result) => {
         if (err) {
             throw err
