@@ -5,6 +5,10 @@ const app = express()
 //import fungsi authorization auth
 const auth = require("./auth")
 
+//import route jurusan
+const jurusan = require("./route/jurusan")
+app.use("/jurusan", jurusan)
+
 //import route siswa
 const siswa = require("./route/siswa")
 app.use("/siswa", siswa)
@@ -20,3 +24,9 @@ app.use("/", user)
 //import route pegawai
 const pegawai = require("./route/pegawai")
 app.use("/pegawai", auth, pegawai)
+
+
+//membuat web server dengan port 2000
+app.listen(2000, () => {
+    console.log("server run on port 2000")
+})
